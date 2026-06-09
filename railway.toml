@@ -1,7 +1,18 @@
 [build]
 builder = "NIXPACKS"
-watchPatterns = ["backend/src/**"]
+
+[phases.setup]
+# Forzamos a Nixpacks a instalar Node.js reconociendo el entorno
+providers = ["node"]
+
+[phases.install]
+# Le decimos que entre a la carpeta backend e instale dependencias desde allí
+cmds = ["cd backend && npm install"]
+
+[phases.build]
+# Si tu backend no requiere compilación previa (como TypeScript), puedes omitir o dejar vacío este comando
+cmds = ["echo 'No build phase needed for backend'"]
 
 [deploy]
-startCommand = "npm start"
-rootDirectory = "backend"
+# Comando exacto para arrancar el backend apuntando a su carpeta
+startCommand = "cd backend && npm start"
