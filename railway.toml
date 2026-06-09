@@ -1,0 +1,7 @@
+[build]
+builder = "NIXPACKS"
+watchPatterns = ["backend/src/**"]
+
+[deploy]
+startCommand = "npm start"
+rootDirectory = "backend"
